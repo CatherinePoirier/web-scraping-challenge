@@ -1,23 +1,18 @@
-/* Dependencies */
 import requests
 
 from splinter import Browser
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 
-import pymongo
-mongo_conn='mongodb://localhost:27107'
-client=pymongo.MongoClient(mongo_conn)
-
 import pandas as pd
 import time
 
-/* Setup splinter */
-executable_path = {'executable_path': ChromeDriverManager().install()}
-browser = Browser('chrome', **executable_path, headless=False)
+
 
 def scrape():
-    /* NASA Mars News */
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    browser = Browser('chrome', **executable_path, headless=False)
+    
     url = "https://mars.nasa.gov/news/"
     browser.visit(url)
     time.sleep(1)
@@ -28,7 +23,7 @@ def scrape():
     news_p= soup.find_all('div', class_="article_teaser_body")
     news_p=(news_p[0].text)
 
-    /* JPL Mars Space Images - Featured Image */
+  
     url="https://www.jpl.nasa.gov/images?search=&category=Mars"
     browser.visit(url)
     time.sleep(1)
@@ -39,13 +34,13 @@ def scrape():
     featured_image= soup.find_all('img', class_="BaseImage")
     featured_image_url=(featured_image[0]['src'])
 
-    /* Mars Facts  */
+    
     url_space = "https://space-facts.com/mars/"
     tables = pd.read_html(url_space)
     df = tables[0]
     html_table = df.to_html('table.html') 
 
-    /* Mars Hemispheres */
+    
     url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
     browser.visit(url)
     time.sleep(1)
@@ -120,8 +115,4 @@ def scrape():
     
 
     return mars_data
-    /* return news_title */
-    /* return news_p */
-    /* return featured_image_url */
-    /* return html_table */
-    /* return hemisphere_image_urls */
+

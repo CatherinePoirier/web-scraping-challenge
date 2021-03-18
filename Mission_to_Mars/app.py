@@ -11,16 +11,17 @@ client = pymongo.MongoClient(conn)
 # Set route
 @app.route('/')
 def index():
-    data_from_mongo=mongo.db.collection.find_one()
-    return render_template('index.html', data_from_flask=data_from_mongo)
+    data_from_mongo=client.mars_db.mars.find_one()
+    if data_from_mongo: 
+        return render_template('index.html', data_from_flask=data_from_mongo)
+    else: 
+        return 'No Data'
 
 @app.route('/scrape')
 def scrape():
-    mars_data = scrape_mars.scrape_info()
-    mongo.db.collection.update({}, mars_data, upsert=True)
-    #Call the scrape_pars.py, which will return a dictionary of re
-    #store the dictionalry of results to mongo
-    #client.mars_db.mars.insert(, upsert=True)
+    mars_data = scrape_mars.scrape()
+    print(mars_data)
+    client.mars_db.mars.update({}, mars_data, upsert= True)
     return redirect('/')
 
 
