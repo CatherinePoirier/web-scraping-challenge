@@ -5,22 +5,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-
-
-
 <body>
     <div class="container-fluid">
         <div class="jumbotron text-center">
-          <h1>Latest Mars News</h1>
-          <p>Beach. Rainforest. Volcano. Tree House. Sloths.</p>
-          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Data!</a></p>
+          <h1>Mission To Mars</h1>
+          <p>Website </p>
+          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
-        <img src="{{ vacation.sloth_img }}" alt="Sloth">
-        <h2>The typical weather in Costa Rica is:</h2>
-        <h3>Max Temp: {{ vacation.max_temp }}</h3>
-        <h3>Min Temp: {{ vacation.min_temp }}</h3>
-      </div>
-      </div>   
+        <h2>{{data_from_flask.news_title}}</h2>
+        <p>{{data_from_flask.paragraph}}</p>
+        <h2>Featured Mars Image</h2>
+        <img src="{{data_from_flask.featured_image }} alt="Featured Image">
+        <h2>Mars Facts</h2>
+        <p>{{data_from_flask.mars_facts}} </p>
+        <h2>Mars Hemispheres</h2>
+        <img src="{{data_from_flask.hemisphere_images[0]}} alt="Featured Image">
+        <img src="{{data_from_flask.hemisphere_images[1]}} alt="Featured Image">
+        <img src="{{data_from_flask.hemisphere_images[2]}} alt="Featured Image">
+        <img src="{{data_from_flask.hemisphere_images[03]}} alt="Featured Image">
+    </div>
+ /*     </div>   
  
 </body>
 
