@@ -3,7 +3,15 @@
 <head>
     <title>MARS HEMISPHERES</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
+    <style>
+      img {
+        width: 600px;
+        height: 600px;
+        object-fit: contain;
+      }
+      </style>
+
+  </head>
 
 <body>
     <div class="container-fluid">
@@ -11,19 +19,47 @@
           <h1>Mission To Mars</h1>
           <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
-        <h2>{{data_from_flask.news_title}}</h2>
+        <h2>Latest Mars News</h2>
+        <h3>{{data_from_flask.news_title}}</h3>
         <p>{{data_from_flask.paragraph}}</p>
-        <h2>Featured Mars Image</h2>
-        <img src="{{data_from_flask.featured_image }} alt="Featured Image">
-        <h2>Mars Facts</h2>
-        <p>{{data_from_flask.mars_facts}} </p>
-        <h2>Mars Hemispheres</h2>
-        <img src="{{data_from_flask.hemisphere_images[0]['img_url']}}" alt="Featured Image">
-        <img src="{{data_from_flask.hemisphere_images[1]['img_url']}}" alt="Featured Image">
-        <img src="{{data_from_flask.hemisphere_images[2]['img_url']}}" alt="Featured Image">
-        <img src="{{data_from_flask.hemisphere_images[03]['img_url']}}" alt="Featured Image">
-    </div>
- /*     </div>   
+
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Featured Image</h2>
+            <img src="{{data_from_flask['featured_image']}}" alt="Featured Image">
+          </div>
+          <div class="col-md-6">
+            <h2>Mars Facts</h2>
+            {{data_from_flask['html_table'] | safe}}
+          </div>
+        </div>
+        <div class="row"></div>
+          <div class="col-md-12">
+            <h2><center>Mars Hemispheres</center></h2>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+              <h3>{{data_from_flask.hemisphere_images[0]['title']}}</h3>
+              <img src="{{data_from_flask.hemisphere_images[0]['img_url']}}" alt="Featured Image">
+            </div> 
+            <div class="col-md-6">
+              <h3>{{data_from_flask.hemisphere_images[1]['title']}}</h3>
+              <img src="{{data_from_flask.hemisphere_images[1]['img_url']}}" alt="Featured Image">
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col-md-6"> 
+              <h3>{{data_from_flask.hemisphere_images[2]['title']}}</h3>
+              <img src="{{data_from_flask.hemisphere_images[2]['img_url']}}" alt="Featured Image">
+            </div> 
+            <div class="col-md-6"> 
+              <h3>{{data_from_flask.hemisphere_images[3]['title']}}</h3>
+              <img src="{{data_from_flask.hemisphere_images[03]['img_url']}}" alt="Featured Image">
+            </div> 
+          </div> 
+      </div>
+      </div>   
  
 </body>
 
